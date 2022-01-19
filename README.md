@@ -11,6 +11,3 @@ use this command to run trader
 
 cd trader
 sh runAll
-
-# get an .exe file (doesnt work)
-npm run build
