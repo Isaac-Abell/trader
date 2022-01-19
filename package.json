@@ -1,11 +1,11 @@
 {
-  "name": "signal_trader",
+  "name": "trader",
   "version": "1.0.0",
   "description": "A stock signal generator",
   "main": "dist/main.js",
   "scripts": {
     "compile": "npx tsc",
-    "build": "rm -rf bin && mkdir bin && pkg dist/main.js --output bin/signal_trader",
+    "build": "rm -rf bin && mkdir bin && pkg dist/main.js --output bin/trader",
     "test": "npm run compile && ava --verbose test/*"
   },
   "author": "",
