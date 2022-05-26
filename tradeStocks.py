@@ -1,16 +1,25 @@
+import os
 import json
 
-with open("stocksToBuy.json") as f:
-    data = json.loads(f.read())
+if os.path.exists("stocksToBuy.json"):
+    with open("stocksToBuy.json") as stockJson:
+        data = json.loads(stockJson.read()) #converts the JSON into usable data
 
-stock=data
+    #takes data and turns it into a list
+    stock=data
+    stocks=stock.split()
 
-stocks=stock.split()
+    #takes list, removes unwanted quotation marks, and truns it into an array 
+    stocksArray=[]
+    for  i in stocks:
+        stocksArray.append(i.replace('"',""))
 
-stocksArray=[]
+    #deletes json file to prevent repeats
+    os.remove("stocksToBuy.json")
+    print("stocksToBuy.json deleted")
 
-for  i in stocks:
-    stocksArray.append(i.replace('"',""))
+    print(stocksArray)
 
+else:
+  print("The file does not exist")
 
-print(stocksArray)
