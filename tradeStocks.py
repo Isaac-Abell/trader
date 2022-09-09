@@ -23,3 +23,4 @@ if os.path.exists("stocksToBuy.json"):
 else:
   print("The file does not exist")
 
+#actual trading not here, because it contins banking info
