@@ -73,7 +73,7 @@ async function main() {
 											])
 
 	const isSellSignal = allPass([
-		                    isRSIGreaterThan(65),
+		                    					isRSIGreaterThan(65),
 												isEMALowerThanAverage,
 												isCurrentPriceHigherThanShortTerm,
 												isCurrentPriceHigherThanLongTerm,
