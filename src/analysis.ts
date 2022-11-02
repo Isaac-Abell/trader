@@ -134,9 +134,18 @@ function findMax(max, interval) {
  * @returns EMA
  */
 function getEMA(closingPrices: Array<number>) {
-	const EMA = getMovingAverage(closingPrices.slice(1, closingPrices.length));
-	return (closingPrices[0] - EMA) * (2 / closingPrices.length) + EMA;
+	let EMA = getMovingAverage(closingPrices.slice(Math.round(closingPrices.length / 3), closingPrices.length));
+
+	for ( let i = Math.round(closingPrices.length / 3) - 1; i >= 0; i-- ){
+
+		EMA = closingPrices[closingPrices.length - i] * (2 / (closingPrices.length - i + 1)) + (EMA * (1 - (2 / (closingPrices.length - i + 1))))
+	}
+	return EMA
 }
+
+// 	const EMA = getMovingAverage(closingPrices.slice(1, closingPrices.length));
+// 	return (closingPrices[0] - EMA) * (2 / closingPrices.length) + EMA;
+// }
 
 /**
  * Get the MACD value for 2 arrays
