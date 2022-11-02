@@ -5,4 +5,4 @@ do
     node dist/main $stock
 done
 
-    py tradeStocks.py
+    py Trading/tradeStocks.py
