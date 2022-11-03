@@ -1,5 +1,6 @@
 import * as Analysis from "./analysis";
 import * as _ from "lodash";
+const fs = require('fs');
 
 import { allPass, pipe } from 'ramda'
 
@@ -81,9 +82,28 @@ async function main() {
 												isMACDLower
 											])
 											
-	if ( isBuySignal() ) {
+	if (isBuySignal()) {
 		console.log(`${symbol} \tBUY`);
-	} else if (isSellSignal()) {
+
+		const stocksToBuy = JSON.stringify(symbol);
+
+		if (fs.existsSync('stocksToBuy.json')) {
+		    let currentStockInfo = fs.readFileSync('stocksToBuy.json');
+		    let combine=`${currentStockInfo} ${stocksToBuy}`
+		    let printToJSON=`"${combine.split('"').join('')}"`
+
+		    fs.writeFile('stocksToBuy.json', (printToJSON), (err) => {
+			if (err) {
+			    throw err;
+			 }});
+		 }
+		else{
+		fs.writeFile('stocksToBuy.json', stocksToBuy, (err) => {
+		    if (err) {
+			throw err;
+		     }});
+		}
+    	} else if (isSellSignal()) {
 		console.log(`${symbol} \tSELL`);
 	} else {
 		console.log(`${symbol} \tNEUTRAL`);
