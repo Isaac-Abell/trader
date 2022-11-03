@@ -137,7 +137,6 @@ function getEMA(closingPrices: Array<number>) {
 	let EMA = getMovingAverage(closingPrices.slice(Math.round(closingPrices.length / 3), closingPrices.length));
 
 	for ( let i = Math.round(closingPrices.length / 3) - 1; i >= 0; i-- ){
-
 		EMA = closingPrices[closingPrices.length - i] * (2 / (closingPrices.length - i + 1)) + (EMA * (1 - (2 / (closingPrices.length - i + 1))))
 	}
 	return EMA
