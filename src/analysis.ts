@@ -133,11 +133,11 @@ function findMax(max, interval) {
  * @param EMA moving average that excludes the most recent day
  * @returns EMA
  */
-function getEMA(closingPrices: Array<number>) {
-	let EMA = getMovingAverage(closingPrices.slice(Math.round(closingPrices.length / 3), closingPrices.length));
-
-	for ( let i = Math.round(closingPrices.length / 3) - 1; i >= 0; i-- ){
-		EMA = closingPrices[closingPrices.length - i] * (2 / (closingPrices.length - i + 1)) + (EMA * (1 - (2 / (closingPrices.length - i + 1))))
+function getEMA(closingPrices) {
+	let EMA = getMovingAverage(closingPrices.slice(Math.round(closingPrices.length / 2), closingPrices.length));
+	let k = (2 / closingPrices.length)
+	for ( let i = Math.round(( closingPrices.length) / 2) - 1; i >= 0; i-- ){
+		EMA = closingPrices[i] * k + (EMA * (1 - k))
 	}
 	return EMA
 }
@@ -157,8 +157,8 @@ function getMACD(
 	fastClosingPrices: Array<number>,
 	slowClosingPrices: Array<number>
 ) {
-	const fastMA = getMovingAverage(fastClosingPrices);
-	const slowMA = getMovingAverage(slowClosingPrices);
+	const fastMA = getEMA(fastClosingPrices);
+	const slowMA = getEMA(slowClosingPrices);
 	return fastMA - slowMA;
 }
 
