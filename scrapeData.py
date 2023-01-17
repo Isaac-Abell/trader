@@ -6,7 +6,7 @@ def scrapeData():
     html_data=requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies').text
     beautiful_soup=BeautifulSoup(html_data, "html.parser")
     tables = beautiful_soup.find_all('table')
-    stocks =[]
+    stocks = []
 
     for row in tables[0].tbody.find_all("tr"):
         col = row.find_all("td")
